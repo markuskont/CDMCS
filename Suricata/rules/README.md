@@ -24,7 +24,7 @@ rule writing tools:
 ET open is the default ruleset packaged with suricata. However, it can be downloaded separately.
 
 ```
-wget -4 http://rules.emergingthreats.net/open/suricata-4.1/emerging.rules.tar.gz
+wget -4 http://rules.emergingthreats.net/open/suricata-5.0/emerging.rules.tar.gz
 tar -xzf emerging.rules.tar.gz
 ls -lah rules/
 ```
@@ -95,6 +95,7 @@ Load the pcap into suricata
 ```
 suricata -r /vagrant/capture.pcap -vvv
 ```
+
 ## Writing your first rule
 
 > Do not write rules, buy from professionals!
@@ -126,6 +127,8 @@ Checksum errors can also be ignored with `-k` flag. That way we do not have to r
 ```
 suricata -S /vagrant/custom.rules -r /vagrant/my.pcap -l logs/ -vvv -k none
 ```
+
+But the proper way to solve this probleb is by [disabling NIC offloading fucntions](/Suricata/intro#disable-nic-offloading).
 
 Fast is human-readable plaintext format from Snort days. 
 
