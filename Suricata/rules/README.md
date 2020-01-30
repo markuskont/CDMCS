@@ -96,6 +96,14 @@ Load the pcap into suricata
 suricata -r /vagrant/capture.pcap -vvv
 ```
 
+Or, you can capture traffic on the wire.
+
+```
+suricata --af-packet=$ETH -l logs/ -vvv
+```
+
+However, note that can be considerably more difficult (or annoying) to reproduce with live traffic.
+
 ## Writing your first rule
 
 > Do not write rules, buy from professionals!
@@ -177,10 +185,19 @@ A rule consists of the following:
 
 * Facebook certificate
 * DNS domain with .su suffix
-* Curl user-agent
 * DNS zone transfer
+* Detection of popular default user-agesnts:
+  * Python;
+  * Nikto;
+  * Dirbuster;
+  * Nmap;
+  * Curl
 
 ### More complex tasks once we have covered some config aspects
 
 * TLS connection from HOME_NET to toto.com domain (we need to exclude toto.communism.fr)
 * Alert on JPEG image taken with a NIKON D700 (example: http://home.regit.org/wp-content/uploads/2017/07/20170705_0237.jpg)
+* Set up a simple web server with `python3 -m http.server` and create 5 files with some content in it;
+  * 2 files are *confidential* - you should get an alert whenever someone accesses them via HTTP GET;
+  * You should not get an alert for other files;
+  * Modify this rule, so that alerts are only generated when files are downloaded from **CONFIDENTIAL_SERVER**;
