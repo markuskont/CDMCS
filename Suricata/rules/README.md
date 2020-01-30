@@ -128,9 +128,9 @@ Checksum errors can also be ignored with `-k` flag. That way we do not have to r
 suricata -S /vagrant/custom.rules -r /vagrant/my.pcap -l logs/ -vvv -k none
 ```
 
-But the proper way to solve this probleb is by [disabling NIC offloading fucntions](/Suricata/intro#disable-nic-offloading).
+But the proper way to solve this probleb is by [disabling NIC offloading fucntions](/Suricata/intro#disable-nic-offloading) and then regenerating the pcap.
 
-Fast is human-readable plaintext format from Snort days. 
+Fast log is human-readable plaintext format from Snort days. 
 
 ```
 cat logs/fast.log
@@ -173,9 +173,14 @@ A rule consists of the following:
 
 ## Exercise - write rules that trigger on following conditions
 
+### Basic tasks for introduction
+
 * Facebook certificate
-* DNS zone transfer
 * DNS domain with .su suffix
 * Curl user-agent
+* DNS zone transfer
+
+### More complex tasks once we have covered some config aspects
+
 * TLS connection from HOME_NET to toto.com domain (we need to exclude toto.communism.fr)
 * Alert on JPEG image taken with a NIKON D700 (example: http://home.regit.org/wp-content/uploads/2017/07/20170705_0237.jpg)
