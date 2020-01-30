@@ -17,7 +17,11 @@ see:
 > Suricata will automatically detect protocols such as HTTP on any port and apply the proper detection and logging logic. Suricata can log HTTP requests, log and store TLS certificates, extract files from flows and store them to disk.
 
 
-## Install on Debian and Ubuntu
+## Basic usage
+
+This is just a bare minimum needed to run suricata from CLI on debian or ubuntu machine. Not much useful stuff we can do yet.
+
+### Install on Debian and Ubuntu
 
 > **[OISF](http://oisf.net)** maintains a **PPA suricata-stable** that always contains the latest stable release.
 
@@ -31,8 +35,24 @@ apt-get update
 apt-get install suricata
 ```
 
-## Disable nic offloading
+```
+suricata -V
+suricata --help
+```
+
+### Disable nic offloading
 
 ```
 ethtool -K $ETH tx off sg off gro off gso off lro off tso off
+```
+
+### Simply running from cli
+
+```
+cat /etc/suricata/rules/*.rules >> /tmp/all.rules
+mkdir /tmp/log
+```
+
+```
+suricata --af-packet=$ETH -l /tmp -s /tmp/all.rules  -vvv
 ```
