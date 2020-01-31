@@ -58,6 +58,14 @@ network:
   host: 0.0.0.0
 ```
 
+Docker nodes are located inside a docker private network, thus you need to use either a `--network host` flag when creating a container. This binds continer to host network stack and bypasses docker networking entirely. Do not do in production. Or you can alter the `network.publish_host` parameter from elasticsearch.
+
+```
+network:
+  host: 0.0.0.0
+  publish_host: ACCESSIBLE_IP_OR_ADDRESS
+```
+
 HTTP listener is configured separately.
 
 ```
