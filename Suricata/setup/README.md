@@ -408,8 +408,6 @@ Then add update command with reload to periodic cron task.
   * Unix and BSD ping;
   * SID `906200077`, `906200082`, `906200087`, `906200088`, `906200048`, `906200047´, ´906200038`, `906200015`;
 
-
-
 ## Packet acquisition
 
 Modern method for getting packets from kernel space to suricata is `af-packet`. Interface can be defined as command line flag.
