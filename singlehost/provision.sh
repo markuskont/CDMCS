@@ -374,7 +374,7 @@ alert tls any any -> any any (msg:"CDMCS: Facebook certificate detected"; tls.su
 alert http any any -> any any (msg:"CDMCS: Listed UA seen"; http.user_agent; to_sha256; dataset:isset,ua-seen; classtype:policy-violation; sid:3000004; rev:1; metadata:created_at 2020_01_29, updated_at 2020_01_29;)
 alert dns any any -> any any (msg:"CDMCS: Listed DNS hash seen"; dns.query; to_sha256; dataset:isset,dns-sha256-seen; classtype:policy-violation; sid:3000005; rev:1; metadata:created_at 2020_01_29, updated_at 2020_01_29;)
 alert http any any -> \$EXTERNAL_NET any (msg:"CDMCS: Bypass content delivery"; http.host; dataset:isset,http-content-delivery, type string, state /var/lib/suricata/content-deliver.lst; bypass; sid:3000006; rev:1; metadata:created_at 2020_02_28, updated_at 2020_02_28;)
-alert http any any -> \$EXTERNAL_NET any (msg:"CDMCS: Collect unique user-agents"; http.user-agent; dataset:set,http-user-agents, type string, state /var/lib/suricata/http-user-agents.lst; bypass; sid:3000007; rev:1; metadata:created_at 2020_02_28, updated_at 2020_02_28;)
+alert http any any -> \$EXTERNAL_NET any (msg:"CDMCS: Collect unique user-agents"; http.user_agent; dataset:set,http-user-agents, type string, state /var/lib/suricata/http-user-agents.lst; bypass; sid:3000007; rev:1; metadata:created_at 2020_02_28, updated_at 2020_02_28;)
 EOF
 
 FILE=/var/lib/suricata/rules/lua.rules
