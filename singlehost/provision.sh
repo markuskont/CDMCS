@@ -22,7 +22,7 @@ grep PATH /root/.bashrc || echo "export PATH=$PATH" >> /root/.bashrc
 USER="vagrant"
 
 # versions
-ELASTIC_VERSION="7.5.2"
+ELASTIC_VERSION="7.6.0"
 INFLUX_VERSION="1.7.9"
 GRAFANA_VERSION="6.6.0"
 TELEGRAF_VERSION="1.13.2"
