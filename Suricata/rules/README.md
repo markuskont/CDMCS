@@ -42,7 +42,7 @@ suricata -V
 suricata --help
 ```
 
-#### Disable nic offloading
+### Disable nic offloading
 
 ```
 ethtool -K $ETH tx off sg off gro off gso off lro off tso off
@@ -50,7 +50,7 @@ ethtool -K $ETH tx off sg off gro off gso off lro off tso off
 
 This task is done automatically when starting recent Suricata.
 
-#### Simply running from cli
+### Simply running from cli
 
 ```
 cat /etc/suricata/rules/*.rules >> /tmp/all.rules
@@ -60,6 +60,22 @@ mkdir /tmp/log
 ```
 suricata --af-packet=$ETH -l /tmp -S /tmp/all.rules  -vvv
 ```
+
+### Docker install
+
+Note that Suricata fowrks just fine when set up using docker. [There is an official image for that](https://github.com/jasonish/docker-suricata#usage). Thought building one for yourself is not too difficult.
+
+```
+docker run --rm -ti jasonish/suricata --help
+```
+
+Note that docker images usually have a default command or entrypoint. That means, you don't need to call `suricata` binary, as it is already packaged with the container. You simply need to call for arguments. Also note that this does not apply to other binaries inside the image. If you want to call `suricata-update` instead, then you need to explicitly do so.
+
+```
+docker run --rm -ti jasonish/suricata suricata-update --help
+```
+
+Finally, do note that container usage and arguments depend on how the image was built. There is not single way to do these things. You simply need to [read the Dockerfile](https://github.com/jasonish/docker-suricata/blob/master/Dockerfile) and [entrypoint script](https://github.com/jasonish/docker-suricata/blob/master/docker-entrypoint.sh).
 
 # Rules
 
