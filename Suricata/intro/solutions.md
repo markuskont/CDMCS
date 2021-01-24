@@ -4,6 +4,11 @@
 
 ```
 alert dns any any -> any any (sid: 100; msg: "Alert on facebook dns request"; dns.query; content: "facebook";);
+```
+
+* Facebook certificate
+
+```
 alert tls any any -> any any (sid: 103; msg: "Alert on facebook cert"; tls.sni; content: "facebook";)
 ```
 
@@ -13,7 +18,9 @@ alert tls any any -> any any (sid: 103; msg: "Alert on facebook cert"; tls.sni; 
 alert dns any any -> any any (sid: 104; msg: "Alert on soviet union domain"; dns.query; content: ".su"; endswith;);
 ```
 
-* DNS zone transfer (tricky, use wireshark for help)
+* DNS zone transfer
+  * hint - no keyword will help here, you need to hunt raw bytes with wireshark
+  * hint - mind the protocol
 
 ```
 alert dns any any -> any any (sid: 105; msg: "Alert on zone transfer"; content: "|00 fc|";);
