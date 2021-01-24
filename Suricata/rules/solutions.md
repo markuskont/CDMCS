@@ -67,6 +67,10 @@ alert http any any -> any any (msg: "CHECK - malfile redirection"; sid: 116; htt
     * mark the IOC in alert metadata;
 
 ```
+ cat logs/elastic/eve.json| jq 'select(.alert.signature_id==113) | .http.redirect'
+```
+
+```
 "redirect": "https://secure.zenithglobalplc.com/assets/plugins/bootstrap-wizard/system_x64.exe"
 ```
 
