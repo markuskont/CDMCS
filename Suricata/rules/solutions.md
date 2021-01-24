@@ -31,7 +31,7 @@ cat eve.json | jq 'select(.event_type=="http")'
     * this is highest priority match;
 
 ```
-alert http any any -> any any (sid:111; msg: "Malicious file seen"; flow:to_server,established; http.method; content: "GET"; http.user_agent; content: "WinHttp.WinHttpRequest"; http.uri; content: "system_x64.exe"; endswith;)
+alert http any any -> any any (sid:111; msg: "Malicious file seen"; flow:to_server,established; http.method; content: "GET"; http.user_agent; content: "WinHttp.WinHttpRequest"; http.uri; content: "system_x64.exe"; endswith; priority: 1;)
 ```
 
 * Generalize the rule to match on .exe file seen in http;
