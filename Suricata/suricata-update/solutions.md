@@ -85,11 +85,17 @@ cat /tmp/logs/*/report.txt  | less
   * apt and yum package management;
   * Unix and BSD ping;
   * Suricata STREAM rules;
-* Write a crontab script that updates your ruleset and invokes suricata rule reload **without restarting it**;
 
 ```
 re:curl user-agent
 re:(apt|yum).+package
 re:PING (\*NIX|BSD)
 re:SURICATA STREAM
+```
+
+* Write a crontab script that updates your ruleset and invokes suricata rule reload **without restarting it**;
+
+```
+suricata-update -D $DIR
+suricatasc -c "reload-rules"
 ```
